@@ -244,7 +244,7 @@ coverage = CustomMetrics.json_key_coverage(pred_json, ref_json)
 
 ```
 qwen3-trainer/
-├── qwen3_trainer/          # 核心框架代码
+├── src/          # 核心框架代码
 │   ├── __init__.py
 │   ├── config.py           # 配置管理
 │   ├── data.py             # 数据处理
