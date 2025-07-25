@@ -124,8 +124,8 @@ lora:
 #### 训练模型
 
 ```python
-from qwen3_trainer import Qwen3Trainer
-from qwen3_trainer.config import ConfigManager
+from src import Qwen3Trainer
+from src.config import ConfigManager
 
 # 加载配置
 config = ConfigManager("configs/default_config.yaml")
@@ -145,7 +145,7 @@ trainer.run_full_training()
 #### 模型推理
 
 ```python
-from qwen3_trainer import Qwen3Inference, ModelConfig, InferenceConfig
+from src import Qwen3Inference, ModelConfig, InferenceConfig
 
 # 配置
 model_config = ModelConfig()
@@ -170,7 +170,7 @@ print(response)
 #### 模型评估
 
 ```python
-from qwen3_trainer import ModelEvaluator, EvaluationConfig
+from src import ModelEvaluator, EvaluationConfig
 
 # 配置评估
 eval_config = EvaluationConfig()
@@ -221,7 +221,7 @@ input,output
 框架支持添加自定义评估指标：
 
 ```python
-from qwen3_trainer.evaluator import CustomMetrics
+from src.evaluator import CustomMetrics
 
 # HTML 结构相似度（适用于 HTML 转换任务）
 similarity = CustomMetrics.html_structure_similarity(pred_html, ref_html)

@@ -7,7 +7,7 @@ __version__ = "0.1.0"
 __author__ = "Your Name"
 __email__ = "your.email@example.com"
 
-from .config import TrainingConfig, ModelConfig, DataConfig
+from .config import TrainingConfig, ModelConfig, DataConfig, InferenceConfig, EvaluationConfig, ConfigManager
 from .data import DataLoader, DataProcessor
 from .trainer import Qwen3Trainer
 from .inference import Qwen3Inference
@@ -17,6 +17,9 @@ __all__ = [
     "TrainingConfig",
     "ModelConfig", 
     "DataConfig",
+    "InferenceConfig",
+    "EvaluationConfig",
+    "ConfigManager",
     "DataLoader",
     "DataProcessor",
     "Qwen3Trainer",

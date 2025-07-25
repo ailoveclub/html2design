@@ -12,7 +12,7 @@ from pathlib import Path
 # 添加项目根目录到路径
 sys.path.append(str(Path(__file__).parent.parent))
 
-from qwen3_trainer import Qwen3Inference, ModelEvaluator, ModelConfig, InferenceConfig, EvaluationConfig
+from src import Qwen3Inference, ModelEvaluator, ModelConfig, InferenceConfig, EvaluationConfig
 
 logging.basicConfig(
     level=logging.INFO,

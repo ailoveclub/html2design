@@ -254,7 +254,7 @@ RUN pip install --no-cache-dir -r {requirements_file}
 # 复制模型和代码
 COPY {model_path} ./model/
 COPY *.py ./
-COPY qwen3_trainer/ ./qwen3_trainer/
+COPY src/ ./src/
 
 # 暴露端口
 EXPOSE {port}
@@ -433,7 +433,7 @@ Qwen3 推理服务
 
 import argparse
 import logging
-from qwen3_trainer import Qwen3Inference, ModelConfig, InferenceConfig
+from src import Qwen3Trainer, Qwen3Inference, ModelConfig, InferenceConfig
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -464,7 +464,7 @@ def main():
     inference_engine.load_model()
     
     # 启动服务
-    from qwen3_trainer.inference import InferenceServer
+    from src.inference import InferenceServer
     server = InferenceServer(inference_engine)
     server.start_server(host=args.host, port=args.port)
 

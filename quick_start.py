@@ -12,9 +12,9 @@ from pathlib import Path
 # 添加项目根目录到路径
 sys.path.append(str(Path(__file__).parent))
 
-from qwen3_trainer import Qwen3Trainer, Qwen3Inference, ModelEvaluator
-from qwen3_trainer.config import ConfigManager
-from qwen3_trainer.data import DataLoader
+from src import Qwen3Trainer, Qwen3Inference, ModelEvaluator
+from src.config import ConfigManager
+from src.data import DataLoader
 from transformers import AutoTokenizer
 
 logging.basicConfig(
@@ -131,7 +131,7 @@ def run_quick_demo():
         # 5. 推理演示
         logger.info("🤖 开始推理演示...")
         
-        from qwen3_trainer.config import ModelConfig, InferenceConfig
+        from src.config import ModelConfig, InferenceConfig
         
         model_config = ModelConfig()
         inference_config = InferenceConfig()
@@ -170,7 +170,7 @@ def run_quick_demo():
         # 6. 评估演示
         logger.info("📊 评估演示...")
         
-        from qwen3_trainer.config import EvaluationConfig
+        from src.config import EvaluationConfig
         eval_config = EvaluationConfig()
         evaluator = ModelEvaluator(eval_config)
         

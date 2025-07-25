@@ -11,8 +11,8 @@ from pathlib import Path
 # 添加项目根目录到路径
 sys.path.append(str(Path(__file__).parent.parent))
 
-from qwen3_trainer import Qwen3Trainer
-from qwen3_trainer.config import ConfigManager
+from src import Qwen3Trainer
+from src.config import ConfigManager
 
 logging.basicConfig(
     level=logging.INFO,
@@ -99,7 +99,7 @@ def main():
         
         # 创建示例数据（如果需要）
         if args.create_sample_data:
-            from qwen3_trainer.data import DataLoader
+            from src.data import DataLoader
             # 创建临时分词器用于生成示例数据
             from transformers import AutoTokenizer
             tokenizer = AutoTokenizer.from_pretrained(

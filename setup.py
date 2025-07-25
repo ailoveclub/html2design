@@ -69,7 +69,7 @@ setup(
     },
     include_package_data=True,
     package_data={
-        "qwen3_trainer": ["configs/*.yaml", "configs/*.json"],
+        "src": ["configs/*.yaml", "configs/*.json"],
     },
     keywords="qwen3 llm finetuning training huggingface transformers",
     project_urls={

@@ -12,7 +12,7 @@ from pathlib import Path
 # 添加项目根目录到路径
 sys.path.append(str(Path(__file__).parent.parent))
 
-from qwen3_trainer import Qwen3Inference, ModelConfig, InferenceConfig
+from src import Qwen3Inference, ModelConfig, InferenceConfig
 
 logging.basicConfig(
     level=logging.INFO,
@@ -123,7 +123,7 @@ def main():
         
         if args.start_server:
             # 启动推理服务器
-            from qwen3_trainer.inference import InferenceServer
+            from src.inference import InferenceServer
             server = InferenceServer(inference_engine)
             logger.info(f"启动推理服务器: http://{args.host}:{args.port}")
             server.start_server(host=args.host, port=args.port)

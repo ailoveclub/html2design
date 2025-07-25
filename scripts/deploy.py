@@ -12,7 +12,7 @@ from pathlib import Path
 # 添加项目根目录到路径
 sys.path.append(str(Path(__file__).parent.parent))
 
-from qwen3_trainer.deployment import DeploymentManager
+from src.deployment import DeploymentManager
 
 logging.basicConfig(
     level=logging.INFO,
@@ -112,7 +112,7 @@ def main():
                 "data": "自定义数据集",
                 "procedure": "使用 Qwen3 训练框架进行 LoRA 微调",
                 "usage_example": """
-from qwen3_trainer import Qwen3Inference, ModelConfig, InferenceConfig
+        from src import Qwen3Inference, ModelConfig, InferenceConfig
 
 # 配置
 model_config = ModelConfig()

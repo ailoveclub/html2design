@@ -10,13 +10,13 @@ from pathlib import Path
 # 添加项目根目录到路径
 sys.path.append(str(Path(__file__).parent.parent))
 
-from qwen3_trainer import (
+from src import (
     Qwen3Trainer, 
     Qwen3Inference, 
     ModelEvaluator,
     ConfigManager
 )
-from qwen3_trainer.config import ModelConfig, InferenceConfig, EvaluationConfig
+from src.config import ModelConfig, InferenceConfig, EvaluationConfig
 
 
 def example_1_basic_training():
@@ -38,7 +38,7 @@ def example_1_basic_training():
     
     # 创建示例数据
     print("创建示例数据...")
-    from qwen3_trainer.data import DataLoader
+    from src.data import DataLoader
     from transformers import AutoTokenizer
     
     tokenizer = AutoTokenizer.from_pretrained(
@@ -226,7 +226,7 @@ def example_5_html_to_figma_scenario():
     
     # 演示自定义评估指标
     print("\n使用自定义评估指标:")
-    from qwen3_trainer.evaluator import CustomMetrics
+    from src.evaluator import CustomMetrics
     
     # HTML结构相似度
     pred_html = '<div><h1>标题</h1><p>文本</p></div>'
