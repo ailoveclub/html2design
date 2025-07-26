@@ -113,10 +113,10 @@ def run_quick_demo():
         # 3. 创建训练器
         logger.info("🏗️ 创建训练器...")
         trainer = Qwen3Trainer(
-            model_config=config_manager.model_config,
-            training_config=config_manager.training_config,
-            data_config=config_manager.data_config,
-            use_lora=True
+            model_config=config_manager.model_config, # 模型配置
+            training_config=config_manager.training_config, # 训练配置
+            data_config=config_manager.data_config, # 数据配置
+            use_lora=True # 是否使用LoRA
         )
         
         # 4. 开始训练（可选）
