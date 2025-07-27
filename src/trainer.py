@@ -14,6 +14,7 @@ from transformers import (
     TrainingArguments,
     Trainer,
     DataCollatorForLanguageModeling,
+    DataCollatorForSeq2Seq,
     EarlyStoppingCallback
 )
 from datasets import Dataset
@@ -81,7 +82,9 @@ class Qwen3Trainer:
             self.model_config.model_name,
             cache_dir=self.model_config.cache_dir,
             trust_remote_code=self.model_config.trust_remote_code,
-            padding_side="right"
+            padding_side="right",
+            padding=True,
+            truncation=True
         )
         
         # 设置pad_token
@@ -95,7 +98,8 @@ class Qwen3Trainer:
             trust_remote_code=self.model_config.trust_remote_code,
             torch_dtype=getattr(torch, self.model_config.torch_dtype),
             device_map=self.model_config.device_map,
-            use_flash_attention_2=self.model_config.use_flash_attention
+            #! 暂时不使用flash attention，因为模型不支持，换新的模型后可以试试
+            # use_flash_attention_2=self.model_config.use_flash_attention
         )
         
         # 应用LoRA
@@ -140,7 +144,8 @@ class Qwen3Trainer:
             eval_steps=self.training_config.eval_steps if eval_dataset else None,
             save_steps=self.training_config.save_steps,
             save_total_limit=self.training_config.save_total_limit,
-            evaluation_strategy=self.training_config.evaluation_strategy if eval_dataset else "no",
+            # evaluation_strategy=self.training_config.evaluation_strategy if eval_dataset else "no",
+            eval_strategy="steps",
             load_best_model_at_end=self.training_config.load_best_model_at_end and eval_dataset is not None,
             metric_for_best_model=self.training_config.metric_for_best_model,
             greater_is_better=self.training_config.greater_is_better,
@@ -156,9 +161,9 @@ class Qwen3Trainer:
         )
         
         # 创建数据整理器
-        data_collator = DataCollatorForLanguageModeling(
+        data_collator = DataCollatorForSeq2Seq(
             tokenizer=self.tokenizer,
-            mlm=False,
+            # mlm=False,
             pad_to_multiple_of=8
         )
         
@@ -168,7 +173,6 @@ class Qwen3Trainer:
             args=training_args,
             train_dataset=train_dataset,
             eval_dataset=eval_dataset,
-            tokenizer=self.tokenizer,
             data_collator=data_collator,
             callbacks=[EarlyStoppingCallback(early_stopping_patience=3)] if eval_dataset else None
         )
